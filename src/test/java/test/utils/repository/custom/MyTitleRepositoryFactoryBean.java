@@ -21,11 +21,15 @@ import org.springframework.data.keyvalue.core.KeyValueOperations;
 public class MyTitleRepositoryFactoryBean<T extends Repository<S, ID>, S, ID extends Serializable>
  extends HazelcastRepositoryFactoryBean<T, S, ID> {
 
+	public MyTitleRepositoryFactoryBean(Class<? extends T> repositoryInterface) {
+		super(repositoryInterface);
+	}
+
 	/* Create a specialised repository factory.
-	 * 
-	 * (non-Javadoc)
-	 * @see org.springframework.data.hazelcast.repository.support.HazelcastRepositoryFactoryBean#createRepositoryFactory(org.springframework.data.keyvalue.core.KeyValueOperations, java.lang.Class, java.lang.Class)
-	 */
+         *
+         * (non-Javadoc)
+         * @see org.springframework.data.hazelcast.repository.support.HazelcastRepositoryFactoryBean#createRepositoryFactory(org.springframework.data.keyvalue.core.KeyValueOperations, java.lang.Class, java.lang.Class)
+         */
 	@Override
 	protected MyTitleRepositoryFactory createRepositoryFactory(KeyValueOperations operations,
 			Class<? extends AbstractQueryCreator<?, ?>> queryCreator, Class<? extends RepositoryQuery> repositoryQueryType) {

@@ -49,6 +49,10 @@ import org.springframework.data.keyvalue.repository.support.KeyValueRepositoryFa
 public class HazelcastRepositoryFactoryBean<T extends Repository<S, ID>, S, ID extends Serializable>
 		extends KeyValueRepositoryFactoryBean<T, S, ID> {
 
+	public HazelcastRepositoryFactoryBean(Class<? extends T> repositoryInterface) {
+		super(repositoryInterface);
+	}
+
 	/**
 	 * <P>
 	 * Return a {@link HazelcastRepositoryFactory}.
