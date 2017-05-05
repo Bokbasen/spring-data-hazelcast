@@ -258,7 +258,7 @@ public class HazelcastQueryCreator extends AbstractQueryCreator<KeyValueQuery<Pr
 			case IN:
 				Object o = iterator.next();
 				Collection<Comparable> list = (Collection<Comparable>) o;
-				Comparable[] a = (Comparable[]) list.toArray();
+				Comparable[] a = list.toArray(new Comparable[list.size()]);
 				return Predicates.in(property, a);
 			default:
 				throw new InvalidDataAccessApiUsageException(String.format("Logic error for '%s' in query", type));
