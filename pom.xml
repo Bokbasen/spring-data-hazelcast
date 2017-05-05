@@ -17,6 +17,10 @@
 	</parent>
 
 	<properties>
+		<baseUrl>http://ci2.bokskya.webbe.no</baseUrl>
+		<repoUrl>${baseUrl}/nexus/repository</repoUrl>
+		<releaseRepoUrl>${repoUrl}/maven-releases/</releaseRepoUrl>
+		<snapshotRepoUrl>${repoUrl}/maven-snapshots/</snapshotRepoUrl>
 		<dist.key>DATAHC</dist.key>
 		<hazelcast>3.6</hazelcast>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -26,6 +30,19 @@
 		<maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
 		<spring>4.3.8.RELEASE</spring>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>no.bokbasen.releases</id>
+			<name>BB Releases</name>
+			<url>${releaseRepoUrl}</url>
+		</repository>
+		<snapshotRepository>
+			<id>no.bokbasen.snapshots</id>
+			<name>BB Snapshots</name>
+			<url>${snapshotRepoUrl}</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 
