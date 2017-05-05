@@ -15,8 +15,9 @@
  */
 package org.springframework.data.hazelcast.repository.query;
 
-import java.util.Iterator;
-
+import com.hazelcast.query.PagingPredicate;
+import com.hazelcast.query.Predicate;
+import com.hazelcast.query.Predicates;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.keyvalue.core.query.KeyValueQuery;
@@ -27,9 +28,8 @@ import org.springframework.data.repository.query.parser.Part.IgnoreCaseType;
 import org.springframework.data.repository.query.parser.Part.Type;
 import org.springframework.data.repository.query.parser.PartTree;
 
-import com.hazelcast.query.PagingPredicate;
-import com.hazelcast.query.Predicate;
-import com.hazelcast.query.Predicates;
+import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * @author Christoph Strobl
@@ -162,13 +162,16 @@ public class HazelcastQueryCreator extends AbstractQueryCreator<KeyValueQuery<Pr
 			case IS_NULL:
 				return fromNullVariant(type, property);
 
+			case IN:
+				return fromInVariant(type, property, iterator);
+
 			/* case AFTER:
 			 * case BEFORE:
 			 * case BETWEEN:
 			 * case CONTAINING:
 			 * case ENDING_WITH:
 			 * case EXISTS:
-			 * case IN:
+
 			 * case NEAR:
 			 * case NEGATING_SIMPLE_PROPERTY:
 			 * case NOT_CONTAINING:
@@ -245,6 +248,18 @@ public class HazelcastQueryCreator extends AbstractQueryCreator<KeyValueQuery<Pr
 			case LIKE:
 				return Predicates.like(property, iterator.next().toString());
 
+			default:
+				throw new InvalidDataAccessApiUsageException(String.format("Logic error for '%s' in query", type));
+		}
+	}
+
+	private Predicate<?, ?> fromInVariant(Type type, String property, Iterator<Comparable<?>> iterator) {
+		switch (type) {
+			case IN:
+				Object o = iterator.next();
+				Collection<Comparable> list = (Collection<Comparable>) o;
+				Comparable[] a = (Comparable[]) list.toArray();
+				return Predicates.in(property, a);
 			default:
 				throw new InvalidDataAccessApiUsageException(String.format("Logic error for '%s' in query", type));
 		}

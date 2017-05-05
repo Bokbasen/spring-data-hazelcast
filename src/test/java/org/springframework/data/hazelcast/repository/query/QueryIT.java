@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -334,6 +335,13 @@ public class QueryIT extends TestDataHelper {
 		assertThat("Second, 1992, Pacino", matches.get(1).getFirstname(), equalTo("Al"));
 		assertThat("Third, 1957, Guinness", matches.get(2).getFirstname(), equalTo("Alec"));
 		assertThat("Three matches", matches.size(), equalTo(3));
+	}
+
+	@Test
+	public void findByFirstNameIn() {
+		List<Person> matches = this.personRepository.findByFirstnameIn(Arrays.asList("Alec"));
+
+		assertThat("First, 2002, Alec", matches.get(0).getFirstname(), equalTo("Alec"));
 	}
 
 	@Test

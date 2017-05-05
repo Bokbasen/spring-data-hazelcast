@@ -1,6 +1,8 @@
 package test.utils.repository.standard;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -102,5 +104,7 @@ public interface PersonRepository extends HazelcastRepository<Person, String> {
 	public Person findByFirstnameOrLastnameIgnoreCase(String firstname, String lastname);
 
 	public Person findByFirstnameIgnoreCaseOrLastname(String firstname, String lastname);
+
+	List<Person> findByFirstnameIn(Collection values);
 
 }
