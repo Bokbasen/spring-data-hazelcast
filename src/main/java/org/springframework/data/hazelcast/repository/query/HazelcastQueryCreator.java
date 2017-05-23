@@ -29,6 +29,7 @@ import org.springframework.data.repository.query.parser.Part.Type;
 import org.springframework.data.repository.query.parser.PartTree;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -258,6 +259,9 @@ public class HazelcastQueryCreator extends AbstractQueryCreator<KeyValueQuery<Pr
 			case IN:
 				Object o = iterator.next();
 				Collection<Comparable> list = (Collection<Comparable>) o;
+				if (list == null) {
+					list = Collections.emptyList();
+				}
 				Comparable[] a = list.toArray(new Comparable[list.size()]);
 				return Predicates.in(property, a);
 			default:

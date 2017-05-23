@@ -345,6 +345,27 @@ public class QueryIT extends TestDataHelper {
 	}
 
 	@Test
+	public void findByFirstNameInWithNullValue() {
+		List<Person> matches = this.personRepository.findByFirstnameIn(null);
+
+		assertThat(matches.size(), equalTo(0));
+	}
+
+	@Test
+	public void findByFirstNameInWithEmptyValue() {
+		List<Person> matches = this.personRepository.findByFirstnameIn(Arrays.asList(""));
+
+		assertThat(matches.size(), equalTo(0));
+	}
+
+	@Test
+	public void findByFirstNameInWithEmptyList() {
+		List<Person> matches = this.personRepository.findByFirstnameIn(Collections.emptyList());
+
+		assertThat(matches.size(), equalTo(0));
+	}
+
+	@Test
 	public void findFirst30ByOrderByFirstnameDescLastnameAsc() {
 		List<Person> matches = this.personRepository.findFirst30ByOrderByFirstnameDescLastnameAsc();
 
