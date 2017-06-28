@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.hazelcast.repository.HazelcastRepository;
+import org.springframework.data.hazelcast.repository.query.Query;
 import org.springframework.data.repository.query.Param;
 
 import test.utils.domain.Person;
@@ -106,5 +107,14 @@ public interface PersonRepository extends HazelcastRepository<Person, String> {
 	public Person findByFirstnameIgnoreCaseOrLastname(String firstname, String lastname);
 
 	List<Person> findByFirstnameIn(Collection values);
+
+	@Query("firstname=James")
+	public List<Person> peoplewiththeirFirstNameIsJames();
+
+	@Query("firstname=%s")
+	public List<Person> peoplewiththeirFirstName(String firstName);
+
+	@Query("firstname=%s and lastname=%s")
+	public List<Person> peoplewithFirstAndLastName(String firstName,String lastName);
 
 }
