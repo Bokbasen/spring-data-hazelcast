@@ -44,6 +44,11 @@ public class HazelcastKeyValueAdapter extends AbstractKeyValueAdapter {
 		this.hzInstance = Hazelcast.getOrCreateHazelcastInstance(cfg);
 	}
 
+	public HazelcastKeyValueAdapter(HazelcastInstance hzInstance) {
+		super(new HazelcastQueryEngine());
+		this.hzInstance = hzInstance;
+	}
+
 	public void setHzInstance(HazelcastInstance hzInstance) {
 		this.hzInstance = hzInstance;
 	}

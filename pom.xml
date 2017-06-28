@@ -21,7 +21,7 @@
 		<releaseRepoUrl>${repoUrl}/maven-releases/</releaseRepoUrl>
 		<snapshotRepoUrl>${repoUrl}/maven-snapshots/</snapshotRepoUrl>
 		<dist.key>DATAHC</dist.key>
-		<hazelcast>3.6</hazelcast>
+		<hazelcast>3.7.7</hazelcast>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<springdata.keyvalue>1.2.0.RELEASE</springdata.keyvalue>
