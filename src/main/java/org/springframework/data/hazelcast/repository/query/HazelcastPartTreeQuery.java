@@ -68,7 +68,7 @@ public class HazelcastPartTreeQuery extends KeyValuePartTreeQuery {
 	 * </P>
 	 *
 	 * @param queryMethod Method defined in {@code HazelcastRepository}
-	 * @param evalulationContextProvider Not used
+	 * @param evaluationContextProvider Not used
 	 * @param keyValueOperations Interface to Hazelcast
 	 * @param queryCreator Not used
 	 */
@@ -302,7 +302,7 @@ public class HazelcastPartTreeQuery extends KeyValuePartTreeQuery {
 	 * </LI>
 	 * </OL>
 	 *
-	 * @param parameters Possibly empty
+	 * @param originalParameters Possibly empty
 	 * @param partTree Query tree to traverse
 	 * @return Paremeters in correct order
 	 */
