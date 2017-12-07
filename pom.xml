@@ -4,7 +4,7 @@
 
 	<groupId>com.hazelcast</groupId>
 	<artifactId>spring-data-hazelcast</artifactId>
-	<version>1.1.1.3.BOKBASEN-SNAPSHOT</version>
+	<version>1.1.1.3.BOKBASEN</version>
 
 	<name>Spring Data Hazelcast</name>
   	<description>Spring Data module for Hazelcast repositories.</description>
@@ -14,6 +14,12 @@
 		<artifactId>spring-data-parent</artifactId>
 		<version>1.9.9.RELEASE</version>
 	</parent>
+
+	<scm>
+		<connection>scm:git:git@github.com:Bokbasen/spring-data-hazelcast.git</connection>
+		<developerConnection>scm:git:git@github.com:Bokbasen/spring-data-hazelcast.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<properties>
 		<baseUrl>http://ci2.bokskya.webbe.no</baseUrl>
@@ -294,4 +300,8 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+
+  <scm>
+    <tag>spring-data-hazelcast-1.1.1.3.BOKBASEN</tag>
+  </scm>
 </project>
